@@ -24,6 +24,10 @@ Examples:
 Or simply,
 > #cheerlights green
 
+### Follow the Feed
+
+You can watch the tweets that are controlling lights all over the world in real time: https://twitter.com/search?q=cheerlights&f=live
+
 ## Backstory
 
 > [Cheerlights](https://cheerlights.com) is an “Internet of Things” project created by Hans Scharler(http://www.nothans.com/) in 2011 that allows people’s lights all across the world to synchronize to one color set by Twitter. This is a way to connect physical things with social networking experiences.
