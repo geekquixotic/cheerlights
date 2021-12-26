@@ -127,6 +127,3 @@ while True:
     pixels[pixel]=color
     print("Changing {} to {}".format(pixel,color))
     pixels.show()
-
-
-    
