@@ -1,6 +1,7 @@
 # Adafruit IO code from: https://learn.adafruit.com/mqtt-in-circuitpython/circuitpython-wifi-usage
 # Neopixel code from: https://learn.adafruit.com/circuitpython-essentials/circuitpython-neopixel
 # Found correct neopixel pin via: https://learn.adafruit.com/assets/96736
+# Later I may want a second feed I can trigger locally - https://circuitpython.readthedocs.io/projects/adafruit-circuitpython-minimqtt/en/latest/examples.html
 
 ## Get the Libraries
 import time
