@@ -19,7 +19,8 @@ from adafruit_led_animation.color import RED, GREEN, BLUE, CYAN, WHITE, OLD_LACE
 pixel_pin = board.IO33
 num_pixels = 50
 string=[] ## For keeping track of which color each pixel is now
-pixels = neopixel.NeoPixel(pixel_pin, num_pixels, brightness=0.3, auto_write=True, pixel_order=neopixel.GRB)
+pixels = neopixel.NeoPixel(pixel_pin, num_pixels, brightness=0.3, auto_write=False, pixel_order=neopixel.RGB)
+alt=2 ## How many real colors to show between message colors on new color
 
 ## Colors for the wreath loop
 colorPicks=[
@@ -72,6 +73,7 @@ for i in range(num_pixels):
     color=colorPicks[i%len(colorPicks)]
     pixels[i] = color
     string.append(color)
+pixels.show()
 
 # Define callback methods which are called when events occur
 def connected(client, userdata, flags, rc):
@@ -89,8 +91,22 @@ def message(client, topic, message):
     # This method is called when a topic the client is subscribed to
     # has a new message.
     print("New message on topic {0}: {1}".format(topic, message))
+    pinwheel(message)
+
+def pinwheel(color):
+    for i in range(num_pixels/2):
+        toggle=i%alt
+        for i in range(num_pixels):
+            if (i+toggle)%alt:
+                pixels[i]=string[i]
+            else:
+                pixels[i]=cheerColors[color]
+        pixels.show()
+        time.sleep(0.1)
     for i in range(num_pixels):
-        pixels[i] = cheerColors[message]
+        pixels[i]=cheerColors[color]
+    pixels.show()
+
 
 # Create a socket pool
 pool = socketpool.SocketPool(wifi.radio)
@@ -132,5 +148,6 @@ while True:
     ## Set the pixel and store the choice
     pixels[pixel]=color
     string[pixel]=color
+    pixels.show()
 
     print("Pixel {} to {}".format(pixel,color))
